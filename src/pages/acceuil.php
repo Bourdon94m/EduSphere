@@ -1,12 +1,10 @@
 <?php
 // Définition du chemin de base
-define('BASE_PATH', dirname(__DIR__, 2));
 define('BASE_URL', '/EduSphere');
 
 $page_title = "Accueil - EduSphère";
 
 // Inclusion du header
-require_once BASE_PATH . '/src/includes/header.php';
 ?>
 
 <!DOCTYPE html>

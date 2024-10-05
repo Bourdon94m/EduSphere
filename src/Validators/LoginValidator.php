@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 // Définition du chemin de base
 define('BASE_PATH', dirname(__DIR__, 2));
 const BASE_URL = '/EduSphere';
@@ -23,8 +23,6 @@ function loginUser($email, $password): bool
         $user = $result->fetch_assoc();
         // Vérifier le mot de passe
         if (password_verify($password, $user['password'])) {
-            // Démarrer la session
-            session_start();
             // Stocker l'ID de l'utilisateur dans la session
             $_SESSION['user_id'] = $user['id'];
             return true; // Connexion réussie
@@ -42,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (loginUser($email, $password)) {
         echo "Connexion réussie !";
         // Rediriger vers la page d'accueil ou le tableau de bord
-        redirect("index.php");
+        redirect("/EduSphere/src/index.php");
     } else {
         echo "Échec de la connexion. Vérifiez vos identifiants.";
     }

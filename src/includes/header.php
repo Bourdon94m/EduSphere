@@ -1,3 +1,12 @@
+<?php
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+    require_once(__DIR__ . '/../config.php');
+?>
+
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -27,7 +36,7 @@
 <body class="bg-background text-text">
 <header class="bg-background shadow-md">
     <div class="container mx-auto px-4 py-6 flex items-center justify-between">
-        <a href="/ÉduSphère/src/index.php" class="text-primary text-3xl font-bold">EduSphère</a>
+        <a href="/EduSphere/src/index.php" class="text-primary text-3xl font-bold">EduSphère</a>
         <nav>
             <ul class="flex items-center space-x-6">
                 <li>
@@ -37,9 +46,33 @@
                         </svg>
                     </a>
                 </li>
-                <li>
-                    <a href="pages/login.php" class="bg-primary text-background px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300">Connexion</a>
-                </li>
+                <?php
+                // Assurez-vous que la fonction isLoggedIn() est définie ailleurs dans votre code
+                if (isLoggedIn()) {
+                    // L'utilisateur est connecté
+                    ?>
+                    <li>
+                        <a href="pages/dashboard.php" class="bg-primary text-background px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300">
+                            Mon Compte
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/EduSphere/src/Validators/Logout.php" class="text-primary hover:text-secondary transition duration-300">
+                            Déconnexion
+                        </a>
+                    </li>
+                    <?php
+                } else {
+                    // L'utilisateur n'est pas connecté
+                    ?>
+                    <li>
+                        <a href="pages/login.php" class="bg-primary text-background px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300">
+                            Connexion
+                        </a>
+                    </li>
+                    <?php
+                }
+                ?>
 
             </ul>
         </nav>

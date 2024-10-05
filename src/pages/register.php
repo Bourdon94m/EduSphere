@@ -1,7 +1,7 @@
 <?php
 // Définition du chemin de base
 define('BASE_PATH', dirname(__DIR__, 2));
-define('BASE_URL', '/EduSphere');
+const BASE_URL = '/EduSphere';
 
 $page_title = "Inscription - EduSphere";
 

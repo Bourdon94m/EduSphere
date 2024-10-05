@@ -1,5 +1,7 @@
 <?php
 
+// Définition du chemin de base
+require_once  'utilities.php';
 
 function getDbConnection() {
     static $conn;
@@ -25,3 +27,4 @@ function isLoggedIn(): bool
 {
     return isset($_SESSION["user_id"]);
 }
+
