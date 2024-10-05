@@ -1,7 +1,7 @@
 <?php
 // Définition du chemin de base
 define('BASE_PATH', dirname(__DIR__, 2));
-define('BASE_URL', '/ÉduSphère');
+define('BASE_URL', '/EduSphere');
 
 $page_title = "Connexion - EduSphère";
 
@@ -48,7 +48,7 @@ require_once BASE_PATH . '/src/includes/header.php';
                 <div class="bg-primary text-background py-4 px-6">
                     <h2 class="text-2xl font-bold">Connexion</h2>
                 </div>
-                <form class="py-4 px-6">
+                <form method="POST" action="<?php echo BASE_URL ?> /src/Validators/LoginValidator.php" class="py-4 px-6">
                     <div class="mb-4">
                         <label for="email" class="block mb-2 font-bold">Adresse email</label>
                         <input type="email" id="email" name="email" required

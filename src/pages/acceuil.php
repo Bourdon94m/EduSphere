@@ -1,7 +1,7 @@
 <?php
 // Définition du chemin de base
 define('BASE_PATH', dirname(__DIR__, 2));
-define('BASE_URL', '/ÉduSphère');
+define('BASE_URL', '/EduSphere');
 
 $page_title = "Accueil - EduSphère";
 
@@ -18,7 +18,6 @@ require_once BASE_PATH . '/src/includes/header.php';
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-
     <!-- Configuration des couleurs personnalisées -->
     <script>
         tailwind.config = {
@@ -107,7 +106,7 @@ require_once BASE_PATH . '/src/includes/header.php';
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-3xl font-bold mb-4 text-text">Prêt à commencer votre parcours d'apprentissage ?</h2>
             <p class="text-xl mb-8 text-text">Inscrivez-vous dès maintenant et bénéficiez de 20% de réduction sur votre première formation !</p>
-            <a href="/ÉduSphère/src/pages/register.php" class="bg-primary text-background font-bold py-3 px-8 rounded-full hover:bg-opacity-90 transition duration-300">
+            <a href="/EduSphere/src/pages/register.php" class="bg-primary text-background font-bold py-3 px-8 rounded-full hover:bg-opacity-90 transition duration-300">
                 S'inscrire maintenant
             </a>
         </div>
