@@ -26,18 +26,14 @@
             $stmt->execute();
 
             // Préparer l'email
-            $resetLink = "http://EduSphere/src/pages/reset_password.php";
+            $resetLink = "http://127.0.0.1/EduSphere/src/pages/reset_password.php?token=" .$token;
             $to = $email;
             $subject = "Réinitialisation de votre mot de passe";
             $message_body = "Bonjour,\n\nVous avez demandé à réinitialiser votre mot de passe. Veuillez cliquer sur le lien suivant pour procéder :\n\n$resetLink\n\nCe lien expirera dans 1 heure.\n\nSi vous n'avez pas demandé cette réinitialisation, veuillez ignorer cet email.\n\nCordialement,\nL'équipe de votre site";
 
-            $headers = "FROM: noreply@EduSphere.com\r\n";
-            $headers = "REPLY-To: noreply@EduSphere.com\r\n";
-            $headers = "X-Mailer: PHP/" .phpversion();
-
 
             // Envoie de l'email
-            if (mail($to, $subject, $message_body, $headers)) {
+            if (sendEmail($to, $subject, $message_body, $resetLink)) {
                 $message = "Si un compte existe avec cet addresse email, un lien de réinitialisation a été envoyé.";
             } else {
                 $message = "Une erreur s'est produite lors de l'envoie de l'email. Veuillez réesayer plus tard.";
