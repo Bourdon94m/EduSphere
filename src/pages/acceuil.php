@@ -4,7 +4,6 @@ define('BASE_URL', '/EduSphere');
 
 $page_title = "Accueil - EduSphère";
 
-// Inclusion du header
 ?>
 
 <!DOCTYPE html>

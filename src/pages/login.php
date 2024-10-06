@@ -64,7 +64,7 @@ require_once BASE_PATH . '/src/includes/header.php';
                             <input type="checkbox" class="form-checkbox text-primary">
                             <span class="ml-2">Se souvenir de moi</span>
                         </label>
-                        <a href="#" class="text-primary hover:underline">Mot de passe oublié?</a>
+                        <a href="/EduSphere/src/pages/request_reset.php" class="text-primary hover:underline">Mot de passe oublié?</a>
                     </div>
                     <button type="submit"
                             class="w-full bg-primary text-background font-bold py-2 px-4 rounded-md hover:bg-opacity-90 transition duration-300">
