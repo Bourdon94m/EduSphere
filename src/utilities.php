@@ -1,6 +1,9 @@
 <?php
 // Inclure l'autoloader de Composer
-require 'vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
 // Importation de PHP MAILER
 use PHPMailer\PHPMailer\PHPMailer;
@@ -11,34 +14,48 @@ function redirect($url): void {
     exit();
 }
 
-function sendEmail($to, $subject, $body) {
+function sendEmail($to, $subject, $body, $resetLink) {
     // Création de l'instance de PHP MAILER
     $mail = new PHPMailer(true);
+    $host = $_ENV['SMTP_HOST'];
+    $username = $_ENV['SMTP_USERNAME'];
+    $password = $_ENV['SMTP_PASSWORD'];
+    $port = $_ENV['SMTP_PORT'];
+    $from = $_ENV['SMTP_FROM']; // Ajoutez cette ligne dans votre fichier .env
 
     try {
         // Paramétrage du serveur
         $mail->isSMTP();
-        $mail->Host     = 'smtp.gmail.com'; // Spécifiez le serveur SMTP
+        $mail->Host     = $host;
         $mail->SMTPAuth = true;
-        $mail->Username = ''; // SMTP username
-        $mail->Password = ''; // SMTP password
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Activer le chiffrement TLS
-        $mail->Port       = 587; // Port TCP pour ce connecter
+        $mail->Username = $username;
+        $mail->Password = $password;
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port     = $port;
 
-        // Destinataires
-        $mail->setFrom($to, 'Expéditeur');
-
+        // Expéditeur et destinataires
+        $mail->setFrom($from); // Utilisez l'adresse de l'expéditeur définie dans .env
+        $mail->addAddress($to); // Ajoutez le destinataire
 
         // Contenu
-        $mail->isHTML(true); // Défini le format de l'email en HTML
+        $mail->isHTML(true);
         $mail->Subject = $subject;
-        $mail->Body    = $body;
-        $mail->AltBody = $body;
 
+        // Charger le template HTML
+        $body = file_get_contents(BASE_PATH . '\src\mail_template\reset_password_email.html');
+
+        // Remplacer les variables dans le template
+        $body = str_replace('{{RESET_LINK}}', $resetLink, $body);
+
+        $mail->Body = $body;
         $mail->send();
-        echo "Le message a été envoyé";
+        return true;
     }
     catch (Exception $e) {
-        echo "Le message na pas pu etre envoyé. Erreur : {$mail->ErrorInfo}";
+        error_log("Erreur d'envoi d'email : " . $mail->ErrorInfo);
+        error_log("Destinataire : " . $to);
+        error_log("Sujet : " . $subject);
+        error_log("Exception complète : " . $e->getMessage());
+        return false;
     }
 }
