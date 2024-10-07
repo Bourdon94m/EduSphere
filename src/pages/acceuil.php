@@ -44,7 +44,7 @@ $page_title = "Accueil - EduSphère";
             <div class="max-w-2xl mx-auto text-center">
                 <h1 class="text-4xl font-bold mb-4">Développez vos compétences avec EduSphère</h1>
                 <p class="text-xl mb-8">Découvrez nos formations en ligne et boostez votre carrière</p>
-                <a href="#" class="bg-accent text-text font-bold py-2 px-6 rounded-full hover:bg-opacity-90 transition duration-300">
+                <a href="/EduSphere/src/pages/catalogue.php" class="bg-accent text-text font-bold py-2 px-6 rounded-full hover:bg-opacity-90 transition duration-300">
                     Voir les formations
                 </a>
             </div>
