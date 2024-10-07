@@ -5,8 +5,7 @@ define('BASE_PATH', dirname(__DIR__, 2));
 require_once BASE_PATH . '/src/config.php';
 require_once BASE_PATH . '/src/includes/header.php';
 
-
-// Simulons une liste de formations
+// liste de toutes les formations
 $all_products = getAllProducts(getDbConnection())
 
 ?>
@@ -43,7 +42,13 @@ $all_products = getAllProducts(getDbConnection())
                     </p>
                     <div class="flex justify-between items-center">
                         <span class="text-2xl font-bold text-blue-600"><?= number_format($formation['price'], 2) ?> €</span>
-                        <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Acheter</a>
+                        <div class="">
+                            <a href="formation.php?id=<?= $formation['id'] ?>" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Voir les détails</a>
+                            <?= isLoggedIn()
+                                ? '<a href="#" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Acheter</a>'
+                                : '<a href="login.php" class="bg-[#d42e91] text-white px-4 py-2 rounded hover:bg-[#deb062] transition">Me connecter</a>'
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>
