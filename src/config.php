@@ -40,6 +40,15 @@ function getAllProducts($conn) {
     }
 
     return $products;
+}
 
+function getFormationById($connexion, $id): ?array {
+    $query = "SELECT * FROM products WHERE id = ?";
+    $stmt = $connexion->prepare($query);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
+    $formation = $result->fetch_assoc();
+    return $formation ? $formation : null;
 }
