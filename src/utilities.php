@@ -59,3 +59,17 @@ function sendEmail($to, $subject, $body, $resetLink) {
         return false;
     }
 }
+
+function truncateContent($content, $max_length = 150, $ending = '...') {
+    if (is_array($content)) {
+        // Si c'est un tableau, on le joint d'abord
+        $content = implode('', $content);
+    }
+
+    // Maintenant on traite $content comme une chaine
+    if (strlen($content) > $max_length) {
+        $content = substr($content, 0, $max_length - strlen($ending)) . $ending;
+    }
+
+    return $content;
+}
