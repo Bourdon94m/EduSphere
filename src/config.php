@@ -28,3 +28,18 @@ function isLoggedIn(): bool
     return isset($_SESSION["user_id"]);
 }
 
+
+function getAllProducts($conn) {
+    $stmt = $conn->prepare("SELECT * FROM products");
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $products = [];
+    while ($row = $result->fetch_assoc()) {
+        $products[] = $row;
+    }
+
+    return $products;
+
+
+}
