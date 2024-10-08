@@ -1,39 +1,35 @@
 <?php
-// Définir le chemin de base
+// formation.php
 define('BASE_PATH', dirname(__DIR__, 2));
 require_once BASE_PATH . '/src/config.php';
 require_once BASE_PATH . '/src/includes/header.php';
-
 
 // Formation récupérée par son id
 $formation_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 $formation = getFormationById(getDbConnection(), $formation_id);
 
-
-$actual_price = (intval($formation['price']));
-$old_price = $actual_price + 20.99;
-
 // Vérifier si la formation existe
 if ($formation === null) {
-    // Rediriger vers une page d'erreur ou afficher un message
-    echo "Formation non trouvée ! ";
+    echo "Formation non trouvée !";
     exit(); // Arrêter l'exécution du script
-
 }
+
+$actual_price = intval($formation['price']);
+$old_price = $actual_price + 20.99;
 
 ?>
 
+
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $formation['name'] ?></title>
+    <title><?= htmlspecialchars($formation['name']) ?></title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
-
-
 <main class="container mx-auto px-4 py-8">
     <div class="flex flex-col md:flex-row">
         <!-- Colonne de gauche - Détails de la formation -->
@@ -105,13 +101,21 @@ if ($formation === null) {
                     <span class="text-3xl font-bold"><?= htmlspecialchars($formation['price'])?>€</span>
                     <span class="text-lg text-gray-500 line-through"><?= $old_price?>€</span>
                 </div>
-                <?= isLoggedIn()
-                    ? '<button class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold mb-3 hover:bg-purple-700 transition">Acheter maintenant</button>
-                     <button class="w-full bg-blue-700 text-white py-3 rounded-lg font-semibold mb-3 transition">Ajouter au panier</button>'
-                    : '<a href="login.php" class="bg-[#d42e91] text-white px-4 py-2 rounded hover:bg-[#deb062] transition">Me connecter</a>'
-                ?>
-
-                <ul class="space-y-2 text-sm">
+                <?php if (isLoggedIn()): ?>
+                    <button class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold mb-3 hover:bg-purple-700 transition">Acheter maintenant</button>
+                    <form method="POST" action="/EduSphere/src/pages/panier.php">
+                        <input type="hidden" name="action" value="ajouter">
+                        <input type="hidden" name="id" value="<?= $formation['id'] ?>">
+                        <input type="hidden" name="nom" value="<?= htmlspecialchars($formation['name']) ?>">
+                        <input type="hidden" name="prix" value="<?= $formation['price'] ?>">
+                        <input type="hidden" name="quantite" value="1">
+                        <button type="submit" class="w-full bg-blue-700 text-white py-3 rounded-lg font-semibold mb-3 transition">Ajouter au panier</button>
+                    </form>
+                <?php else: ?>
+                    <a href="login.php" class="bg-[#d42e91] text-white px-4 p-2 rounded hover:bg-[#deb062] transition">Me connecter</a>
+                <?php endif; ?>
+                <br><br>
+                <ul class="space-y-2 text-sm ">
                     <li class="flex items-center">
                         <i class="fas fa-infinity mr-2 text-gray-600"></i>
                         <span>Accès à vie</span>
