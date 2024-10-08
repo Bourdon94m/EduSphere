@@ -1,7 +1,6 @@
 <?php
 // Définition du chemin de base
 define('BASE_URL', '/EduSphere');
-
 $page_title = "Accueil - EduSphère";
 
 ?>
@@ -57,21 +56,17 @@ $page_title = "Accueil - EduSphère";
             <h2 class="text-3xl font-bold mb-8 text-center">Formations populaires</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <?php
-                $featured_courses = [
-                    ['title' => 'Développement Web Full Stack', 'price' => 299, 'image' => 'web-dev.jpg'],
-                    ['title' => 'Marketing Digital Avancé', 'price' => 199, 'image' => 'marketing.jpg'],
-                    ['title' => 'Data Science et Machine Learning', 'price' => 349, 'image' => 'data-science.jpg'],
 
-                ];
+                $latestCourse = latestCourse(getDbConnection());
 
-                foreach ($featured_courses as $course) :
+                foreach ($latestCourse as $course) :
                     ?>
                     <div class="bg-background rounded-lg shadow-md overflow-hidden">
-                        <img src="<?php echo BASE_URL; ?>/public/images/<?php echo htmlspecialchars($course['image']); ?>" alt="<?php echo htmlspecialchars($course['title']); ?>" class="w-full h-48 object-cover">
+                        <img src="<?= htmlspecialchars($course['image_url']) ?>" alt="<?= htmlspecialchars($course['name']) ?>" class="w-full h-48 object-cover hover:scale-105 transition duration-300">
                         <div class="p-6">
-                            <h3 class="font-bold text-xl mb-2"><?php echo htmlspecialchars($course['title']); ?></h3>
+                            <h3 class="font-bold text-xl mb-2"><?php echo htmlspecialchars($course['name']); ?></h3>
                             <p class="text-primary font-bold"><?php echo number_format($course['price'], 2); ?> €</p>
-                            <a href="#" class="mt-4 inline-block bg-secondary text-text px-4 py-2 rounded hover:bg-opacity-90 transition duration-300">
+                            <a href="pages/formation.php?id=<?= $course['id'] ?>" class="mt-4 inline-block bg-secondary text-text px-4 py-2 rounded hover:bg-opacity-90 transition duration-300">
                                 En savoir plus
                             </a>
                         </div>

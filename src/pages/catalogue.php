@@ -8,7 +8,7 @@ require_once BASE_PATH . '/src/includes/header.php';
 // liste de toutes les formations
 $all_products = getAllProducts(getDbConnection())
 
-?>
+//?>
 
 <!DOCTYPE html>
 <html lang="fr">

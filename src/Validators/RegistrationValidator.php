@@ -47,6 +47,19 @@ function isValidFormatEmail() : bool {
 
 }
 
+//* Min 8 char , Min 1 number, Min 1 special char "$"
+function isPasswordMatchRules(): bool
+{
+    $password = $_POST["password"];
+    if (!preg_match('/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?\s])[A-Za-z\d!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?\s]{8,}$/', $password))
+    {
+        var_dump( "Le mot de passe doit contenir : 1 majuscule, 8 caractères minimum, un chiffre et un caractère spécial");
+        return false;
+    } else {
+        return true;
+    }
+}
+
 function createUser() : void {
 
     $conn = getDbConnection();
@@ -58,7 +71,7 @@ function createUser() : void {
     $stmt = $conn->prepare($query); // stmt est l'objet "statement"
     $stmt->bind_param('sss', $email, $hashed_password, $fullName);
     $stmt->execute();
-    redirect("login.php");
+    redirect("RegistrationValidator.php");
 
 
 }
@@ -66,7 +79,7 @@ function createUser() : void {
 function validateRegistration(): void {
     $errors = isRegisterFormEmpty();
 
-    if (empty($errors) && !isRegisterConfirmPasswordSameAsPassword()) {
+    if (empty($errors) && !isRegisterConfirmPasswordSameAsPassword() && isPasswordMatchRules()) {
         $errors[] = "Les mots de passe ne correspondent pas";
     }
 

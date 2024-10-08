@@ -1,6 +1,14 @@
 <?php
 // panier.php
 session_start();
+
+// Définir le chemin de base
+define('BASE_PATH', dirname(__DIR__, 2));
+require_once BASE_PATH . '/src/config.php';
+require_once BASE_PATH . '/src/includes/header.php';
+
+
+
 function addToCart($id, $name, $price, $quantity = 1): void
 {
     if (!isset($_SESSION['panier'])) {
@@ -43,8 +51,8 @@ if (isset($_SESSION['panier'])) {
     <title>Votre Panier</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="min-h-screen bg-gray-100 py-8">
-<div class="max-w-2xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+<body class="min-h-screen bg-gray-100 flex items-center justify-center">
+<div class="max-w-2xl w-full mx-auto bg-white shadow-lg rounded-lg overflow-hidden my-8">
     <div class="px-4 py-5 sm:px-6">
         <h1 class="text-2xl font-semibold text-gray-900">Votre Panier</h1>
     </div>

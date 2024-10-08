@@ -52,3 +52,19 @@ function getFormationById($connexion, $id): ?array {
     $formation = $result->fetch_assoc();
     return $formation ? $formation : null;
 }
+
+// Fonction pour récupérer les cours populaires
+function latestCourse($connexion) {
+    $query = "SELECT * FROM products ORDER BY created_at DESC LIMIT 3";
+    $stmt = $connexion->prepare($query);
+    if ($stmt === false) {
+        error_log("Erreur de préparation de la requête : " . $connexion->error);
+        return [];
+    }
+    if (!$stmt->execute()) {
+        error_log("Erreur d'exécution de la requête : " . $stmt->error);
+        return [];
+    }
+    $result = $stmt->get_result();
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
