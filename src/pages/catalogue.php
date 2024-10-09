@@ -33,11 +33,11 @@ $all_products = getAllProducts(getDbConnection())
             <div class="bg-white rounded-lg shadow-md overflow-hidden">
                 <img src="<?= htmlspecialchars($formation['image_url']) ?>"
                      alt="<?= htmlspecialchars($formation['name']) ?>"
-                     class="w-full h-48 object-cover">
+                     class="w-full h-48 object-cover hover:scale-105 transition duration-300">
                 <div class="p-4">
                     <h2 class="text-xl font-semibold mb-2"><?= htmlspecialchars($formation['name']) ?></h2>
                     <p class="text-gray-600 mb-4">
-
+ 
                         <?= htmlspecialchars(truncateContent($formation['description'])) ?>
                     </p>
                     <div class="flex justify-between items-center">
