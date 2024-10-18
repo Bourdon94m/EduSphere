@@ -115,26 +115,8 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `password`, `fullname`, `created_at`, `reset_token`, `reset_token_expiry`) VALUES
-(1, 'Jean@gmail.com', '$2y$10$LkAgVkPyCfzNJzSWer3GguU75Erm6rm4Xz33AmyIvTlnh6NfusRWq', 'Jean Mounir', '2024-10-05 10:52:13', NULL, NULL),
-(2, 'matthieu.pro94@gmail.com', '$2y$10$nHSc.0sv7yDwoRVynCw9q.r0A2HXww7X8o9ROXfYr3gHVs74hAZxO', 'Matthieu Poulard', '2024-10-05 20:40:27', NULL, NULL),
-(4, 'contact.bestwo@gmail.com', '$2y$10$CyuTMZ5OjOsgkXWySP9ckO9/U4Xdstblb7zDwRHz3.22c2qu0Muj2', 'Aminou', '2024-10-07 16:50:16', '2b4b4447942c4e4e9ce9e97c555ec0d93a5026b6ea105e7028470be5fb022a47', '2024-10-07 19:50:49'),
-(5, 'ThomasJedusor@gmail.com', '$2y$10$yfth9f4MhHGCeUpiucFode2r5Q3cGPL445zUUpeeUzhTNcSihafoS', 'Thomas Jédusor', '2024-10-07 18:53:55', NULL, NULL),
-(7, 'jetebaise@gmail.com', '$2y$10$mthQ4pR5CN3IBgPVDyfS4eTmYT41HRpNRqG6a9DcTrsERACJB5n5S', 'Jete Baise', '2024-10-07 18:56:13', NULL, NULL),
-(8, 'marie@gmail.com', '$2y$10$bxvlUqAcjMGq3.iLyBKHHOknxQhXUBFs695HjwXtM0X8WoZj4EWFW', 'Marie', '2024-10-07 18:57:05', NULL, NULL),
-(9, 'marie1@gmail.com', '$2y$10$ogMtMzc4yd4Go68khZEPnesZPZ5tm.Isq7mBZBUYKgejqdtn5QPr.', 'Marie', '2024-10-07 18:58:00', NULL, NULL),
-(10, 'marie2@gmail.com', '$2y$10$zHKfLzpzGUPjONyIfbjH4.hjgqD0XvTPbGzC2psvYMKmw4Dzqo0Xe', 'Marie', '2024-10-07 18:59:27', NULL, NULL),
-(11, 'Miamiasme@gmail.com', '$2y$10$yF5jaUlamYMWN79iDW0rQOkXKsnxP8zp6q.OGD/dKAV7VNu/TlWvi', 'Moule ', '2024-10-07 19:05:23', NULL, NULL),
-(12, 'Msardou@sard.net', '$2y$10$JTKf0ngzWrh5qdzroeoB.uTilV/eQe7KHEjB9zuMiIHi1r46jlu9G', 'Michel Sardou', '2024-10-07 19:06:54', NULL, NULL),
-(13, 'Msardou@sard.nete', '$2y$10$VHzP2sWVXO9izki5Ss4KHeht1EbIp9mSRv4SsAM8EThGDP7mk.pFW', 'Michel Sardou', '2024-10-07 19:07:20', NULL, NULL),
-(14, 'Testuser@gmail.com', '$2y$10$/SENRts.bUckhh03mm.AluGPWMHhzdAG0l36BMJ5DJ0mvE1lwsBP.', 'Test User', '2024-10-08 14:05:01', NULL, NULL);
-
---
--- Index pour les tables déchargées
---
 
 --
 -- Index pour la table `categories`
