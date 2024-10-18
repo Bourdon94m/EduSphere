@@ -6,10 +6,10 @@ require_once  'utilities.php';
 function getDbConnection() {
     static $conn;
     if ($conn === null) {
-        $host = "localhost";
-        $username = "root";
-        $password = "";
-        $database = "EduSphereTest";
+        $host = "localhost"; # Replace this with host
+        $username = "root"; # Replace this with username
+        $password = ""; # Replace this with password
+        $database = "EduSphereTest"; # Replace this with database name
 
         $conn = new mysqli($host, $username, $password, $database);
 
