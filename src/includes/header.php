@@ -52,7 +52,7 @@ if (session_status() == PHP_SESSION_NONE) {
                     // L'utilisateur est connecté
                     ?>
                     <li>
-                        <a href="pages/dashboard.php" class="bg-primary text-background px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300">
+                        <a href="pages/mon-compte.php" class="bg-primary text-background px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300">
                             Mon Compte
                         </a>
                     </li>

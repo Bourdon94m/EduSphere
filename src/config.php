@@ -6,21 +6,20 @@ require_once  'utilities.php';
 function getDbConnection() {
     static $conn;
     if ($conn === null) {
-        $host = "localhost"; # Replace this with host
-        $username = "root"; # Replace this with username
-        $password = ""; # Replace this with password
-        $database = "EduSphereTest"; # Replace this with database name
-
-        $conn = new mysqli($host, $username, $password, $database);
+        $host = "localhost";
+        $username = "root";
+        $password = "";
+        $database = "eduspheretest";  // Vérifiez si c'est le bon nom de la base de données
+        
+        $conn = new mysqli($host, $username, $password, $database, $port=3306);
 
         if ($conn->connect_error) {
-            die("La connexion a la base de donnée a échoué :" . $conn->connect_error);
+            die("La connexion à la base de données a échoué : " . $conn->connect_error);
         }
 
         $conn->set_charset("utf8mb4");
     }
     return $conn;
-
 }
 
 function isLoggedIn(): bool
