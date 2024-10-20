@@ -1,21 +1,21 @@
 <?php
-    session_start();
-    // Définir le chemin de base
-    define('BASE_PATH', dirname(__DIR__, 2));
-    require_once BASE_PATH . '/src/config.php';
-    require_once BASE_PATH . '/src/includes/header.php';
+session_start();
+// Définir le chemin de base
+define('BASE_PATH', dirname(__DIR__, 2));
+require_once BASE_PATH . '/src/config.php';
+require_once BASE_PATH . '/src/includes/header.php';
 
-    // Connexion a la db
-    $conn = getDbConnection();
+// Connexion a la db
+$conn = getDbConnection();
 
-    // Prépare la requete
-    $stmt = $conn->prepare("SELECT fullname,email FROM users WHERE id = ?");
-    $stmt->bind_param("i", $_SESSION['user_id']);
-    $stmt->execute();
+// Prépare la requete
+$stmt = $conn->prepare("SELECT fullname,email FROM users WHERE id = ?");
+$stmt->bind_param("i", $_SESSION['user_id']);
+$stmt->execute();
 
-    // Récupere le résultat
-    $result = $stmt->get_result();
-    $user = $result->fetch_assoc();
+// Récupere le résultat
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
 
 
 
