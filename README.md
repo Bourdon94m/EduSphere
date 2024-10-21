@@ -26,9 +26,6 @@ Fonctionnalités :
 - Cours disponibles
 - Gestion de compte
 
-Project made in 3 days, more feature will be implemented later.
-
-
 
 <h2>Landing Page</h2> 
 
